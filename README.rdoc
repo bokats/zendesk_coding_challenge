@@ -36,3 +36,5 @@ FUTURE IMPROVEMENT
 3. GraphQL can be added so that search can be performed on multiple tables and only certain information returned.
 4. Use of Elastic Search can also be implemented to speed up search if dataset is large.
 5. Add more unit tests as current tests don't cover 100% due to time constraints.
+
+Note: Due to lack of time, the console interaction and results are not formatted to a production level code, but it still renders all the relevant information.
