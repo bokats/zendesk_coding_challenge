@@ -6,29 +6,29 @@ SYSTEM REQUIREMENTS
 - MySQL installed on local machine
 
 DATABASE CREATION
-1. Install MySQL if not already installed
+- Install MySQL if not already installed
   - Link for reference: https://dev.mysql.com/doc/mysql-getting-started/en/#mysql-getting-started-installing
-2. Once installed, type mysql -u root -p, then press Enter
-3. Once in mysql console, type `create database zendesk_search_development` and `create zendesk_search_test`
+- Once installed, type mysql -u root -p, then press Enter
+- Once in mysql console, type `create database zendesk_search_development` and `create zendesk_search_test`
 
 APPLICATION SET UP
 1. Run `bundle install`
 2. Run `rake db:migrate`
-3. Run `rake db:seed`
+3. Run `rake db:seed` 
 
 RUN TEST SUITE
 1. Run 'bundle exec rspec`
   - All tests should be passing. If not, something with set up is not working
 
 APPLICATION START
-Run `rails runner 'Main.run_main_program'` to start the program
+- Run `rails runner 'Main.run_main_program'` to start the program
 
 SOLUTION
-The search is implemented using MySQL. The json files are parsed and added to relational tables. Tags and Domain Names are also added to separate tables for additional functionality.
-Once all the information is added by user, the program makes a query in the database and returns the results.
-The program allows the user to exit at any point. It also has built in functionality to check if the column type is a boolean and make sure user is passing in a boolean.
-The progams also allows the user to search by tag names or domain names and also see the available fields for each object.
-Once the program is done, it prints the results, including related information from other related tables.
+1. The search is implemented using MySQL. The json files are parsed and added to relational tables. Tags and Domain Names are also added to separate tables for additional functionality.
+2. Once all the information is added by user, the program makes a query in the database and returns the results.
+3. The program allows the user to exit at any point. It also has built in functionality to check if the column type is a boolean and make sure user is passing in a boolean.
+4. The program also allows the user to search by tag names or domain names and also see the available fields for each object.
+5. Once the program is done, it prints the results, including related information from other related tables.
 
 FUTURE IMPROVEMENT
 1. Additional indexes can be added to columns that are frequently queried.
