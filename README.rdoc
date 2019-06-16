@@ -9,7 +9,7 @@ DATABASE CREATION
 - Install MySQL if not already installed
   - Link for reference: https://dev.mysql.com/doc/mysql-getting-started/en/#mysql-getting-started-installing
 - Once installed, type mysql -u root -p, then press Enter
-- Once in mysql console, type `create database zendesk_search_development` and `create zendesk_search_test`
+- Once in mysql console, type `create database zendesk_search_development` and `create database zendesk_search_test`
 
 APPLICATION SET UP
 1. Run `bundle install`
