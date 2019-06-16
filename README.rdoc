@@ -1,28 +1,38 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+SYSTEM REQUIREMENTS
+- Ruby version: 2.1
+- Rails version: 4.2
+- MySQL installed on local machine
 
-Things you may want to cover:
+DATABASE CREATION
+1. Install MySQL if not already installed
+  - Link for reference: https://dev.mysql.com/doc/mysql-getting-started/en/#mysql-getting-started-installing
+2. Once installed, type mysql -u root -p, then press Enter
+3. Once in mysql console, type `create database zendesk_search_development` and `create zendesk_search_test`
 
-* Ruby version
+APPLICATION SET UP
+1. Run `bundle install`
+2. Run `rake db:migrate`
+3. Run `rake db:seed`
 
-* System dependencies
+RUN TEST SUITE
+1. Run 'bundle exec rspec`
+  - All tests should be passing. If not, something with set up is not working
 
-* Configuration
+APPLICATION START
+Run `rails runner 'Main.run_main_program'` to start the program
 
-* Database creation
+SOLUTION
+The search is implemented using MySQL. The json files are parsed and added to relational tables. Tags and Domain Names are also added to separate tables for additional functionality.
+Once all the information is added by user, the program makes a query in the database and returns the results.
+The program allows the user to exit at any point. It also has built in functionality to check if the column type is a boolean and make sure user is passing in a boolean.
+The progams also allows the user to search by tag names or domain names and also see the available fields for each object.
+Once the program is done, it prints the results, including related information from other related tables.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+FUTURE IMPROVEMENT
+1. Additional indexes can be added to columns that are frequently queried.
+2. Caching can be added on top of the relational database.
+3. GraphQL can be added so that search can be performed on multiple tables and only certain information returned.
+4. Use of Elastic Search can also be implemented to speed up search if dataset is large.
+5. Add more unit tests as current tests don't cover 100% due to time constraints.
