@@ -6,6 +6,9 @@ class Search
     '3' => Ticket
   }
 
+  attr_accessor :running, :object, :search_term, 
+    :search_value, :searchable_fields
+
   def initialize
     @running = true
     @object = nil
@@ -130,6 +133,7 @@ class Search
     else
       puts 'No result found'
     end
+    results
   end
 
   # method for printing searching fields for the selected object
