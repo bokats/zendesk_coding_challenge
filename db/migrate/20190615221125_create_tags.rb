@@ -1,7 +1,7 @@
 class CreateTags < ActiveRecord::Migration
   def up
     create_table :tags do |t|
-      t.string :tag_name, null: false
+      t.string :value, null: false
       t.references :source, :polymorphic => true
     end
 

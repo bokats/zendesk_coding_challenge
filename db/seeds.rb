@@ -6,9 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-file_path = File.join Rails.root, 'db/seed_files/'
-file = File.read(File.join(file_path, 'organizations.json'))
-organization_data = JSON.parse(file)
+def parse_file(file_name)
+  file_path = File.join Rails.root, 'db/seed_files/'
+  file = File.read(File.join(file_path, file_name))
+  JSON.parse(file)
+end
+
+organization_data = parse_file('organizations.json')
+user_data = parse_file('users.json')
+ticket_data = parse_file('tickets.json')
 
 organizations = []
 domain_names = []
@@ -24,14 +30,14 @@ organization_data.each do |organization|
     when 'domain_names'
       organization[key].each do |domain_name|
         domain_names << {
-          'domain_name' => domain_name,
+          'value' => domain_name,
           'organization_id' => organization['_id']
         }
       end
     when 'tags'
       organization[key].each do |tag|
         tags << {
-          'tag_name' => tag,
+          'value' => tag,
           'source_id' => organization['_id'],
           'source_type' => 'Organization'
         }
@@ -43,10 +49,6 @@ organization_data.each do |organization|
   organizations << organization_fields
 end
 
-file_path = File.join Rails.root, 'db/seed_files/'
-file = File.read(File.join(file_path, 'users.json'))
-user_data = JSON.parse(file)
-
 user_data.each do |user|
   user_fields = {}
   user.each do |key, value|
@@ -56,7 +58,7 @@ user_data.each do |user|
     when 'tags'
       user[key].each do |tag|
         tags << {
-          'tag_name' => tag,
+          'value' => tag,
           'source_id' => user['_id'],
           'source_type' => 'User'
         }
@@ -67,10 +69,6 @@ user_data.each do |user|
   end
   users << user_fields
 end
-
-file_path = File.join Rails.root, 'db/seed_files/'
-file = File.read(File.join(file_path, 'tickets.json'))
-ticket_data = JSON.parse(file)
 
 ActiveRecord::Base.transaction do
   Organization.create!(organizations)
@@ -84,7 +82,7 @@ ActiveRecord::Base.transaction do
     ticket_entry = Ticket.create!(ticket_fields)
     ticket['tags'].each do |tag|
       Tag.create!(
-        tag_name: tag,
+        value: tag,
         source_id: ticket_entry.id,
         source_type: 'Ticket'
       )

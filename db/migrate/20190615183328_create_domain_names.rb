@@ -1,7 +1,7 @@
 class CreateDomainNames < ActiveRecord::Migration
   def up
     create_table :domain_names do |t|
-      t.string :domain_name, null: false
+      t.string :value, null: false
       t.integer :organization_id
     end
     

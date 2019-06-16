@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20190615221125) do
 
   create_table "domain_names", force: :cascade do |t|
-    t.string  "domain_name",     limit: 255, null: false
+    t.string  "value",           limit: 255, null: false
     t.integer "organization_id", limit: 4
   end
 
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20190615221125) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string  "tag_name",    limit: 255, null: false
+    t.string  "value",       limit: 255, null: false
     t.integer "source_id",   limit: 4
     t.string  "source_type", limit: 255
   end
